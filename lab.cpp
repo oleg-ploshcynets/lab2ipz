@@ -18,14 +18,45 @@ int main()
     {
         cout << "Set the a and b for range h for step and n"
              << endl;
-        cin >> a >> b >> h >> n;
-        if ((a >= b and h >= 0) or (a <= b and h <= 0) or cin.fail())
+        do
         {
-            cout << "Error uncorect data, please check value of variables " << endl;
-            opt = 2;
-        }
-    }
+            cout << "Enter values for a and b (a < b): ";
+            cin >> a >> b;
 
+            if (cin.fail() || a >= b)
+            {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Error: incorrect values, please ensure that a < b." << endl;
+            }
+        } while (a >= b || cin.fail());
+
+        do
+        {
+            cout << "Enter value for h (must be positive ): ";
+            cin >> h;
+
+            if (cin.fail() || h <= 0)
+            {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Error: incorrect value for h, please enter a positive step." << endl;
+            }
+        } while (h <= 0 || cin.fail());
+
+        do
+        {
+            cout << "Enter value for n (must more than 1 ): ";
+            cin >> n;
+
+            if (cin.fail() || n <= 1)
+            {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Error: incorrect value for n (n>1)." << endl;
+            }
+        } while (n <= 1 || cin.fail());
+    }
     if (opt != 1)
     {
         string myText;
@@ -47,11 +78,11 @@ int main()
             case 2:
                 h = stod(myText);
 
-                cout << "Value of c : " << myText << endl;
+                cout << "Value of h : " << myText << endl;
                 break;
             case 3:
                 n = stod(myText);
-                cout << "Value of d : " << myText << endl;
+                cout << "Value of n : " << myText << endl;
                 break;
             }
 
